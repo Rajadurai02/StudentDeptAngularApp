@@ -18,10 +18,15 @@ export class AddorEditDepartmentComponent {
 
   ngOnInit(): void {
     this.department = this.Department;
+    console.log('calleed');
+  }
+
+  get DepartmentName(){
+    return this.DepartmentForm.get('DepartmentName');
   }
 
   DepartmentForm = this._fb.group({
-    DepartmentName: ['',[Validators.required]]
+    DepartmentName: ['',[Validators.required,Validators.minLength(6)]]
   })
 
   addOrEditDepartment(){
@@ -37,6 +42,7 @@ export class AddorEditDepartmentComponent {
     this._service.editDepartment(this.department).subscribe((data)=>{
       alert("Saved Successfully");
       this._parent.getAllDepartments();
+      this._parent.ActiveAddOrEditComp = false;
     },
     (error: Response) => { 
       alert("Error Happened");  
@@ -47,6 +53,7 @@ export class AddorEditDepartmentComponent {
     this._service.addDepartment(this.department).subscribe((data)=>{
       alert("Saved Successfully");
       this._parent.getAllDepartments();
+      this._parent.ActiveAddOrEditComp = false;
     },
     (error: Response) => { 
       alert("Error Happened");  

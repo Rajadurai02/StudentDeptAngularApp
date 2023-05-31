@@ -10,28 +10,30 @@
             <!-- Email input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="Email">Email address</label>
-              <input type="email" id="Email" [(ngModel)]="user.Email" formControlName="Email" class="form-control form-control-lg" />
-              
+              <input [class.is-invalid]="Email?.invalid && Email?.touched" type="email" id="Email" [(ngModel)]="user.Email" formControlName="Email" class="form-control form-control-lg" />
+              <div *ngIf="Email?.invalid && Email?.touched">
+                <span *ngIf="Email?.errors?.['required']" class="text-danger">Email Cannot be empty</span>
+                <span *ngIf="Email?.errors?.['email']" class="text-danger">Invalid Email Format</span>
+              </div>              
             </div>
 
             <div class="form-outline mb-4">
                 <label class="form-label" for="Name">Your Name</label>
-              <input type="email" id="Name" [(ngModel)]="user.Name" formControlName="Name" class="form-control form-control-lg" />
-              
+              <input [class.is-invalid]="Name?.invalid && Name?.touched" type="email" id="Name" [(ngModel)]="user.Name" formControlName="Name" class="form-control form-control-lg" />
+              <div *ngIf="Name?.invalid && Name?.touched">
+                <span *ngIf="Name?.errors?.['required']" class="text-danger">Name Cannot be empty</span>
+              </div> 
             </div>
   
             <!-- Password input -->
             <div class="form-outline mb-4">
                 <label class="form-label" for="Password">Password</label>
-              <input type="password" id="Password" [(ngModel)]="user.Password" formControlName="Password" class="form-control form-control-lg" />
-              
+              <input [class.is-invalid]="Password?.invalid && Password?.touched"  type="password" id="Password" [(ngModel)]="user.Password" formControlName="Password" class="form-control form-control-lg" />
+              <div *ngIf="Password?.invalid && Password?.touched">
+                <span *ngIf="Password?.errors?.['required']" class="text-danger">Password Cannot be empty</span>
+                <span *ngIf="Password?.errors?.['minlength']" class="text-danger">Password must contain atleast four characters</span>
+              </div>
             </div>
-
-            <!-- <div class="form-outline mb-4">
-                <label class="form-label" for="form1Example26">Re Enter Password</label>
-              <input type="password" id="form1Example26" class="form-control form-control-lg" />
-              
-            </div> -->
   
             <div class="mb-4">
               <span *ngIf="serverError" class="text-danger">Due To an error registration Failed</span>
@@ -40,7 +42,7 @@
             <div class="mb-4">
                 <!-- Submit button -->
   
-            <button type="submit" class="btn btn-primary btn-lg btn-block w-100" style="background-color: #3b5998" href="#!"
+            <button [class.disabled]="Email?.invalid || Password?.invalid || Name?.invalid" type="submit" class="btn btn-primary btn-lg btn-block w-100" style="background-color: #3b5998" href="#!"
               role="button">Register
             </button>
             </div>              

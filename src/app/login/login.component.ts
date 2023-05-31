@@ -16,7 +16,7 @@ export class LoginComponent {
   serverErrorMsg:string="";
   constructor(private _router:Router,private _service:UserService,private  _token:TokenService,private _fb:FormBuilder) {
     this.user = new User();
-  }
+  } 
 
   get Email(){
     return this.UserLoginForm.get('Email');
@@ -27,7 +27,7 @@ export class LoginComponent {
   }
 
   UserLoginForm = this._fb.group({
-    Email: ['',[Validators.required]],
+    Email: ['',[Validators.required,Validators.email]],
     Password: ['',[Validators.required]],
   })
 
@@ -39,6 +39,7 @@ export class LoginComponent {
     this._service.userLogin(this.user).subscribe((data)=>{
       var loggedUser:User = data as User;
       this._token.LoggedInUser = loggedUser;
+      this._token.loginSuccess = true;
       this._router.navigate(['/Home']);
     },
     (error: Response) => {  

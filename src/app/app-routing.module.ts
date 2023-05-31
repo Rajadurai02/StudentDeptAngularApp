@@ -9,6 +9,7 @@ import { StudentlistComponent } from './studentlist/studentlist.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
+  {path:"Login",component:LoginComponent},
   {path:"Register",component:RegisterComponent},
   {path:"Home",component:HomeComponent,children:[
     {path:"",component:StudentlistComponent},

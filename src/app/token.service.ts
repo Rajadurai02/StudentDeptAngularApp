@@ -6,6 +6,7 @@ import { User } from './Models/User';
 })
 export class TokenService {
   public LoggedInUser:User;
+  public loginSuccess:boolean = false;
   constructor() { 
     this.LoggedInUser = new User();
   }

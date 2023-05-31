@@ -1,1 +1,40 @@
-<p>addor-edit-student works!</p>
+<form [formGroup]="StudentForm" (ngSubmit)="addOrEditStudent()">
+    <div class="form-outline mb-4">
+        <label class="form-label" for="StudentName">Student Name</label>
+      <input [class.is-invalid]="StudentName?.invalid && StudentName?.touched" type="text" id="StudentName" [(ngModel)]="student.studentName" formControlName="StudentName" class="form-control form-control-lg" />
+      <div *ngIf="StudentName?.invalid && StudentName?.touched">
+        <span *ngIf="StudentName?.errors?.['required']" class="text-danger">StudentName Cannot be Empty</span>
+      </div>            
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="Course">Course</label>
+      <input [class.is-invalid]="Course?.invalid && Course?.touched" type="text" id="Course" [(ngModel)]="student.course" formControlName="Course" class="form-control form-control-lg" />  
+      <div *ngIf="Course?.invalid && Course?.touched">
+        <span *ngIf="Course?.errors?.['required']" class="text-danger">Course Cannot be Empty</span>
+      </div>             
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="Specialization">Specialization</label>
+      <input [class.is-invalid]="Specialization?.invalid && Specialization?.touched" type="text" id="Specialization" [(ngModel)]="student.specialization" formControlName="Specialization" class="form-control form-control-lg" />   
+      <div *ngIf="Specialization?.invalid && Specialization?.touched">
+        <span *ngIf="Specialization?.errors?.['required']" class="text-danger">Specialization Cannot be Empty</span>
+      </div>            
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="Percentage">Percentage</label>
+      <input [class.is-invalid]="Percentage?.invalid && Percentage?.touched" type="number" id="Percentage" [(ngModel)]="student.percentage" formControlName="Percentage" class="form-control form-control-lg" /> 
+      <div *ngIf="Percentage?.invalid && Percentage?.touched">
+        <span *ngIf="Percentage?.errors?.['required']" class="text-danger">Percentage Cannot be Empty</span>
+      </div>              
+    </div>
+    <div class="form-outline mb-4">
+        <label class="form-label" for="DepartmentID">DepartmentID</label>
+      <input [class.is-invalid]="DepartmentID?.invalid && DepartmentID?.touched" type="text" id="DepartmentID" [(ngModel)]="student.departmentID" formControlName="DepartmentID" class="form-control form-control-lg" /> 
+      <div *ngIf="DepartmentID?.invalid && DepartmentID?.touched">
+        <span *ngIf="DepartmentID?.errors?.['required']" class="text-danger">DepartmentID Cannot be Empty</span>
+      </div>              
+    </div>
+    <div class="footer">
+        <button [class.disabled]="StudentName?.invalid || Course?.invalid || Specialization?.invalid || Percentage?.invalid || DepartmentID?.invalid" type="submit" data-bs-dismiss="modal" class="btn btn-primary btn-blue">Save</button> 
+    </div>               
+  </form>

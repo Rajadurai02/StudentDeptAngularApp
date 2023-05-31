@@ -19,8 +19,8 @@ export class RegisterComponent {
   }
 
   UserRegistrationForm = this._fb.group({
-    Email:['',Validators.required],
-    Password:['',Validators.required],
+    Email:['',[Validators.required,Validators.email]],
+    Password:['',[Validators.required,Validators.minLength(4)]],
     Name:['',Validators.required]
   })
 
@@ -30,9 +30,6 @@ export class RegisterComponent {
   get Password(){
     return this.UserRegistrationForm.get('Password');
   }
-  get ConfirmPassword(){
-    return this.UserRegistrationForm.get('ConfirmPassword');
-  }
   get Name(){
     return this.UserRegistrationForm.get('Name');
   }
@@ -40,6 +37,7 @@ export class RegisterComponent {
     this._service.userRegister(this.user).subscribe((data)=>{
       var loggedUser:User = data as User;
       this._token.LoggedInUser = loggedUser;
+      this._token.loginSuccess = true;
       this._router.navigate(['/Home']);
     },
     (error: Response) => {   

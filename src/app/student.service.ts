@@ -22,8 +22,8 @@ export class StudentService {
     return this._http.get<Student[]>(this.getStudentUrl,this.httpOptions);
   }
 
-  getStudentById(id: number): Observable<Student> {
-    return this._http.get<Student>(this.getStudentUrl + "?id=" + id);
+  getStudentById(id: Number): Observable<Student> {
+    return this._http.get<Student>(this.getStudentUrl + "/" + id);
   }
 
   addStudent(student: Student): Observable<Student> {
@@ -34,7 +34,7 @@ export class StudentService {
     return this._http.put<Student>(this.getStudentUrl, student);
   }
 
-  deleteStudent(id: number): Observable<Student> {
-    return this._http.delete<Student>(this.getStudentUrl + "?id=" + id);
+  deleteStudent(id: Number): Observable<Student> {
+    return this._http.delete<Student>(this.getStudentUrl + "/" + id);
   }
 }

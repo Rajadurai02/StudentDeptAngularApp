@@ -41,6 +41,7 @@ td{
     border-radius: 20px;
     padding: 10px 20px;
     align-items: center;
+    cursor: pointer;
 }
 .add-new:hover{
     box-shadow: 1px 1px 10px #5793ce;
@@ -58,4 +59,7 @@ td{
 }
 .modal-header button span{
     font-size:30px;
+}
+.btn-blue{
+    background-color:#5793ce;
 }
