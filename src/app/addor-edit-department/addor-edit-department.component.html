@@ -1,0 +1,9 @@
+<form [formGroup]="DepartmentForm" (ngSubmit)="addOrEditDepartment()">
+    <div class="form-outline mb-4">
+        <label class="form-label" for="DepartmentName">Department Name</label>
+      <input type="text" id="DepartmentName" [(ngModel)]="department.departmentName" formControlName="DepartmentName" class="form-control form-control-lg" />              
+    </div>
+    <div class="footer">
+        <button type="submit" data-bs-dismiss="modal" class="btn btn-primary btn-blue">Save</button> 
+    </div>               
+  </form>

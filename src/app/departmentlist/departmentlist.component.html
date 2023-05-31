@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="pull-right">
+        <a (click)="addNewDepartment()"  data-bs-toggle="modal" data-bs-target="#departmentModal" class="add-new"><i class="bi-plus"></i>Add Department</a>
+    </div>
+</div>
+<span class="text-danger" *ngIf="serverError">{{serverErrorMsg}}</span>
+<div *ngIf="departmentList.length > 0"  class="table-container">
+    <table id="departmentlist" class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Department ID</th>
+                <th scope="col">Department Name</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let department of departmentList">
+                <td>{{department.departmentID}}</td>
+                <td>{{department.departmentName}}</td>
+                <td class="action">
+                    <a (click)="editDepartment(department)" data-bs-toggle="modal" data-bs-target="#departmentModal"><i class="bi-pencil-fill"></i></a>
+                    <i class="bi-trash-fill" (click)="deleteDepartment(department.departmentID)" data-bs-toggle="modal" data-bs-target="#departmentDeleteModal"></i>
+                </td>
+            </tr>            
+        </tbody>
+    </table>
+</div>
+<!--Department Add or Edit Modal -->
+<div class="modal fade" id="departmentModal" tabindex="-1" role="dialog" aria-labelledby="departmentModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="departmentModalTitle">{{departmentModalTitle}}</h5>
+          <button type="button" (click)="departmentModalClosed()" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-addor-edit-department [Department]="Department" *ngIf="ActiveAddOrEditComp"></app-addor-edit-department>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Department Add or Edit Modal -->
+  <div class="modal fade" id="departmentDeleteModal" tabindex="-1" role="dialog" aria-labelledby="departmentDeleteModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="departmentDeleteModalTitle">Delete Department Confirmation</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5>Are you sure You want to delete ?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" (click)="confirmDeleteDepartment()" data-bs-dismiss="modal" class="btn btn-primary btn-blue">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>

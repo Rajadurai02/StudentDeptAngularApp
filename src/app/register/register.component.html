@@ -1,0 +1,51 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="/assets/Images/register.jfif"
+            class="img-fluid register-img" alt="Phone image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <form [formGroup]="UserRegistrationForm" (ngSubmit)="registerUser()">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="Email">Email address</label>
+              <input type="email" id="Email" [(ngModel)]="user.Email" formControlName="Email" class="form-control form-control-lg" />
+              
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="Name">Your Name</label>
+              <input type="email" id="Name" [(ngModel)]="user.Name" formControlName="Name" class="form-control form-control-lg" />
+              
+            </div>
+  
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="Password">Password</label>
+              <input type="password" id="Password" [(ngModel)]="user.Password" formControlName="Password" class="form-control form-control-lg" />
+              
+            </div>
+
+            <!-- <div class="form-outline mb-4">
+                <label class="form-label" for="form1Example26">Re Enter Password</label>
+              <input type="password" id="form1Example26" class="form-control form-control-lg" />
+              
+            </div> -->
+  
+            <div class="mb-4">
+              <span *ngIf="serverError" class="text-danger">Due To an error registration Failed</span>
+            </div>
+            
+            <div class="mb-4">
+                <!-- Submit button -->
+  
+            <button type="submit" class="btn btn-primary btn-lg btn-block w-100" style="background-color: #3b5998" href="#!"
+              role="button">Register
+            </button>
+            </div>              
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
