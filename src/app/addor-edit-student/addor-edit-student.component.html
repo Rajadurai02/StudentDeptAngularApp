@@ -28,11 +28,17 @@
       </div>              
     </div>
     <div class="form-outline mb-4">
-        <label class="form-label" for="DepartmentID">DepartmentID</label>
-      <input [class.is-invalid]="DepartmentID?.invalid && DepartmentID?.touched" type="text" id="DepartmentID" [(ngModel)]="student.departmentID" formControlName="DepartmentID" class="form-control form-control-lg" /> 
-      <div *ngIf="DepartmentID?.invalid && DepartmentID?.touched">
-        <span *ngIf="DepartmentID?.errors?.['required']" class="text-danger">DepartmentID Cannot be Empty</span>
-      </div>              
+      <label class="form-label" for="DepartmentID">DepartmentID</label>
+      <select [class.is-invalid]="DepartmentID?.invalid && DepartmentID?.touched" class="form-control form-control-lg custom-select mb-3" [(ngModel)]="student.departmentID"  (change)="changeDept($event)" formControlName="DepartmentID">
+      <option value="">Choose Department</option>
+      <option *ngFor="let dept of departmentList" [ngValue]="dept.departmentID">
+        {{ dept.departmentName }}
+      </option>
+    </select>
+    <div *ngIf="DepartmentID?.invalid && DepartmentID?.touched">
+      <span *ngIf="DepartmentID?.errors?.['required']" class="text-danger">DepartmentID Cannot be Empty</span>
+    </div>
+                   
     </div>
     <div class="footer">
         <button [class.disabled]="StudentName?.invalid || Course?.invalid || Specialization?.invalid || Percentage?.invalid || DepartmentID?.invalid" type="submit" data-bs-dismiss="modal" class="btn btn-primary btn-blue">Save</button> 

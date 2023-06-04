@@ -1,6 +1,6 @@
 export class User{
-    Email:string='';
-    Password:string='';
-    Name:string='';
-    JwtToken:string='';
+    email:string='';
+    password:string='';
+    name:string='';
+    jwtToken:string='';
 }

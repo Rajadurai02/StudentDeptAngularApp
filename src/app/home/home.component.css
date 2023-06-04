@@ -26,3 +26,22 @@
     height: 60px;
     background-color: #fff;
 }
+.banner{
+    background-color: #5793ce;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.banner h3{
+color:#fff;
+}
+
+.banner a{
+color:#fff;
+cursor:pointer;
+}
+.banner a i{
+    padding-right:8px;
+    }

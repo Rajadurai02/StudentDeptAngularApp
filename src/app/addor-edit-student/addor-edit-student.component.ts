@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { DepartmentService } from '../department.service';
+import { Department } from '../Models/Department';
 import { Student } from '../Models/Student';
 import { StudentService } from '../student.service';
 import { StudentlistComponent } from '../studentlist/studentlist.component';
@@ -12,12 +14,14 @@ import { StudentlistComponent } from '../studentlist/studentlist.component';
 export class AddorEditStudentComponent {
   @Input() public Student:any
   student: Student;
-  constructor(private _service:StudentService,private _fb:FormBuilder,private _parent:StudentlistComponent) {
+  departmentList:Department[]=[];
+  constructor(private _service:StudentService,private _fb:FormBuilder,private _parent:StudentlistComponent,private _deptService:DepartmentService) {
     this.student = new Student();
   }
 
   ngOnInit(): void {
     this.student = this.Student;
+    this.getDepartmentList();
   }
 
   get StudentName(){
@@ -75,5 +79,15 @@ export class AddorEditStudentComponent {
     (error: Response) => { 
       alert("Error Happened");  
     });
+  }
+
+  getDepartmentList(){
+    this._deptService.getDepartments().subscribe((responce)=>{
+      this.departmentList = responce as Department[];
+    })
+  }
+
+changeDept(event:any){
+
   }
 }

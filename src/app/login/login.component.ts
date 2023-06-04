@@ -40,6 +40,7 @@ export class LoginComponent {
       var loggedUser:User = data as User;
       this._token.LoggedInUser = loggedUser;
       this._token.loginSuccess = true;
+      sessionStorage.setItem("login",JSON.stringify(loggedUser));
       this._router.navigate(['/Home']);
     },
     (error: Response) => {  

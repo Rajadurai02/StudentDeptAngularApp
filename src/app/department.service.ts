@@ -13,7 +13,7 @@ export class DepartmentService {
 
   constructor(private _http: HttpClient,private _token:TokenService) { }
 
-  private headers_object = new HttpHeaders().set("Authorization", "Bearer " + this._token.LoggedInUser.JwtToken);
+  private headers_object = new HttpHeaders().set("Authorization", "Bearer " + this._token.LoggedInUser.jwtToken);
 
   private httpOptions = {
     headers: this.headers_object
